@@ -2,7 +2,7 @@ baseURL = "http://tszminglee.github.io"
 #baseURL = "http://www.example.com"
 languageCode = "en-us"
 title = "Tommy Tsz-Ming Lee"
-#theme = "hugo-coder"
+theme = "hugo-coder"
 
 
 [params]
