@@ -22,7 +22,8 @@ body {
 a {
   font-weight: 300;
   color: #1565c0;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: all .25s ease-in; }
   a:focus, a:hover {
     text-decoration: underline; }
 
@@ -91,15 +92,20 @@ h6 {
 b, strong {
   font-weight: 700; }
 
+.highlight > div,
+.highlight > pre {
+  margin: 0 0 2rem;
+  padding: 1rem;
+  border-radius: 1rem; }
+
 pre {
   display: block;
   font-family: "Source Code Pro", "Lucida Console", monospace;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.6rem;
-  margin: 2.0rem 0 2.0rem 0;
-  padding: 2.0rem;
-  overflow-x: auto; }
+  overflow-x: auto;
+  margin: 0; }
   pre code {
     display: inline-block;
     background-color: inherit;
@@ -110,8 +116,7 @@ code {
   font-size: 1.6rem;
   font-weight: 400;
   background-color: #E0E0E0;
-  color: #212121;
-  padding: 0.2rem 0.4rem 0.2rem 0.4rem; }
+  color: #212121; }
 
 blockquote {
   border-left: 2px solid #E0E0E0;
@@ -146,6 +151,9 @@ table tr th:last-child {
 img {
   max-width: 100%; }
 
+figure {
+  text-align: center; }
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -177,6 +185,12 @@ img {
 .fas {
   font-weight: 900; }
 
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em; }
+
 .content {
   flex: 1;
   display: flex;
@@ -195,6 +209,14 @@ img {
           line-height: 4.4rem; } }
   .content article footer {
     margin-top: 4.0rem; }
+    .content article footer .see-also {
+      margin: 3.2rem 0; }
+      .content article footer .see-also h3 {
+        margin: 3.2rem 0; }
+  .content article p {
+    text-align: justify;
+    text-justify: auto;
+    hyphens: auto; }
   .content .post .post-title {
     margin-bottom: .75em; }
   .content .post .post-meta i {
@@ -231,22 +253,28 @@ img {
     @media only screen and (max-width: 768px) {
       .list ul li {
         margin: 1.6rem 0 1.6rem 0; } }
-    .list ul li span {
+    .list ul li .date {
       display: inline-block;
+      flex: 1;
       width: 20.0rem;
       text-align: right;
       margin-right: 3.0rem; }
       @media only screen and (max-width: 768px) {
-        .list ul li span {
+        .list ul li .date {
           display: block;
           text-align: left; } }
-    .list ul li a {
+    .list ul li .title {
       font-size: 1.8rem;
+      flex: 2;
       color: #212121;
       font-family: Lato, Helvetica, sans-serif;
       font-weight: 700; }
-      .list ul li a:hover, .list ul li a:focus {
+      .list ul li .title:hover, .list ul li .title:focus {
         color: #1565c0; }
+
+@media only screen and (min-width: 768.1px) {
+  .list ul:not(.pagination) li {
+    display: flex; } }
 
 .centered {
   display: flex;
@@ -350,15 +378,26 @@ img {
         margin-left: 1.0rem;
         margin-right: 1.0rem; }
     @media only screen and (max-width: 768px) {
+      .navigation .navigation-list .separator {
+        display: none; } }
+    @media only screen and (max-width: 768px) {
       .navigation .navigation-list .menu-separator {
         border-top: 2px solid #212121;
         margin: 0 8.0rem; }
         .navigation .navigation-list .menu-separator span {
           display: none; } }
+  .navigation #dark-mode-toggle {
+    margin: 1.7rem 0;
+    font-size: 2.4rem;
+    line-height: inherit;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 100;
+    position: fixed; }
   .navigation #menu-toggle {
     display: none; }
     @media only screen and (max-width: 768px) {
-      .navigation #menu-toggle:checked + label {
+      .navigation #menu-toggle:checked + label > i {
         color: #E0E0E0; }
       .navigation #menu-toggle:checked + label + ul {
         visibility: visible;
@@ -369,28 +408,35 @@ img {
     @media only screen and (max-width: 768px) {
       .navigation .menu-button {
         display: block;
+        margin: 1.8rem 0;
         font-size: 2.4rem;
-        font-weight: 400;
-        line-height: 6.0rem;
-        color: #212121;
-        cursor: pointer; }
-        .navigation .menu-button:hover, .navigation .menu-button:focus {
-          color: #1565c0; } }
+        font-weight: 400; } }
+    .navigation .menu-button i:hover, .navigation .menu-button i:focus {
+      color: #000; }
+  .navigation i {
+    color: #212121;
+    cursor: pointer; }
+    .navigation i:hover, .navigation i:focus {
+      color: #1565c0; }
 
 .pagination {
   margin-top: 6.0rem;
-  text-align: center; }
+  text-align: center;
+  font-family: Lato, Helvetica, sans-serif; }
   .pagination li {
     display: inline;
-    text-align: center; }
+    text-align: center;
+    font-weight: 700; }
     .pagination li span {
       margin: 0;
       text-align: center;
       width: 3.2rem; }
-    .pagination li a span {
-      margin: 0;
-      text-align: center;
-      width: 3.2rem; }
+    .pagination li a {
+      font-weight: 300; }
+      .pagination li a span {
+        margin: 0;
+        text-align: center;
+        width: 3.2rem; }
 
 .footer {
   width: 100%;
@@ -399,5 +445,30 @@ img {
   margin-bottom: 1.0rem; }
   .footer a {
     color: #1565c0; }
+
+.float-container {
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  position: fixed;
+  font-size: 1.6em; }
+  .float-container a {
+    display: block;
+    text-align: center;
+    width: 3.0rem;
+    height: 3.0rem;
+    color: #000;
+    background-color: #E0E0E0;
+    font-size: 2.0rem;
+    border-radius: 0.5rem;
+    opacity: 50%;
+    transition: all .25s ease-in; }
+    .float-container a:hover, .float-container a:focus {
+      color: #1565c0;
+      opacity: 100%; }
+      @media only screen and (max-width: 768px) {
+        .float-container a:hover, .float-container a:focus {
+          color: #000;
+          opacity: 50%; } }
 
 /*# sourceMappingURL=coder.css.map */
